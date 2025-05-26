@@ -118,7 +118,7 @@
       </ul>
     </div>
   <?php endif; ?>
-  <form method="POST" action="/ProjectBanHangCuaTu2/Product/update" enctype="multipart/form-data"
+  <form method="POST" action="/ProjectBanHangCuaTuBai2/Product/update" enctype="multipart/form-data"
     onsubmit="return validateForm();">
     <input type="hidden" name="id" value="<?php echo $product->id; ?>">
     <div class="form-group mb-3">
@@ -157,7 +157,7 @@
       <i class="fas fa-save"></i> Lưu thay đổi
     </button>
   </form>
-  <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-secondary btn-3d mt-3 w-100">
+  <a href="/ProjectBanHangCuaTuBai2/Product/" class="btn btn-secondary btn-3d mt-3 w-100">
     <i class="fas fa-arrow-left"></i> Quay lại danh sách sản phẩm
   </a>
 </div>

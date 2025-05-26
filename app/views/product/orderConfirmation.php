@@ -71,7 +71,7 @@
     <br>
     Cảm ơn bạn đã đặt hàng.<br>Đơn hàng của bạn đã được xử lý thành công!
   </div>
-  <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-primary btn-3d mt-2">
+  <a href="/ProjectBanHangCuaTuBai2/Product/" class="btn btn-primary btn-3d mt-2">
     <i class="fas fa-shopping-bag"></i> Tiếp tục mua sắm
   </a>
 </div>

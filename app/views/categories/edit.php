@@ -78,7 +78,7 @@
       </ul>
     </div>
   <?php endif; ?>
-  <form method="POST" action="/ProjectBanHangCuaTu2/Category/update">
+  <form method="POST" action="/ProjectBanHangCuaTuBai2/Category/update">
     <input type="hidden" name="id" value="<?php echo $category->id; ?>">
     <div class="form-group mb-3">
       <label for="name"><i class="fas fa-tag"></i> Tên danh mục:</label>
@@ -92,7 +92,7 @@
       <i class="fas fa-save"></i> Cập nhật danh mục
     </button>
   </form>
-  <a href="/ProjectBanHangCuaTu2/Category/list" class="btn btn-secondary btn-3d mt-3 w-100">
+  <a href="/ProjectBanHangCuaTuBai2/Category/list" class="btn btn-secondary btn-3d mt-3 w-100">
     <i class="fas fa-arrow-left"></i> Quay lại danh sách danh mục
   </a>
 </div>

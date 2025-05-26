@@ -15,22 +15,22 @@
         <h5 class="text-uppercase"><i class="fas fa-link mr-2"></i>Liên kết nhanh</h5>
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="/ProjectBanHangCuaTu2/Product/" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTuBai2/Product/" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-boxes mr-2 text-info"></i> Danh sách sản phẩm
             </a>
           </li>
           <li>
-            <a href="/ProjectBanHangCuaTu2/Product/add" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTuBai2/Product/add" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-plus-circle mr-2 text-success"></i> Thêm sản phẩm
             </a>
           </li>
           <li>
-            <a href="/ProjectBanHangCuaTu2/Category/list" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTuBai2/Category/list" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-layer-group mr-2 text-info"></i> Danh sách danh mục
             </a>
           </li>
           <li>
-            <a href="/ProjectBanHangCuaTu2/Category/add" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTuBai2/Category/add" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-plus-circle mr-2 text-success"></i> Thêm danh mục
             </a>
           </li>
@@ -40,9 +40,15 @@
       <div class="col-lg-4 col-md-6 mb-4 d-flex flex-column justify-content-center align-items-end">
         <h5 class="text-uppercase text-center w-100"><i class="fas fa-share-alt mr-2"></i>Kết nối với chúng tôi</h5>
         <div class="w-100 d-flex justify-content-center">
-          <a href="#" class="text-dark mr-3 footer-social" title="Facebook"><i class="fab fa-facebook-f fa-lg"></i></a>
-          <a href="#" class="text-dark mr-3 footer-social" title="Twitter"><i class="fab fa-twitter fa-lg"></i></a>
-          <a href="#" class="text-dark mr-3 footer-social" title="Instagram"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="https://www.facebook.com" class="text-dark mr-3 footer-social" title="Facebook" target="_blank">
+            <i class="fab fa-facebook-f fa-lg"></i>
+          </a>
+          <a href="https://twitter.com" class="text-dark mr-3 footer-social" title="Twitter" target="_blank">
+            <i class="fab fa-twitter fa-lg"></i>
+          </a>
+          <a href="https://www.instagram.com" class="text-dark mr-3 footer-social" title="Instagram" target="_blank">
+            <i class="fab fa-instagram fa-lg"></i>
+          </a>
         </div>
       </div>
     </div>

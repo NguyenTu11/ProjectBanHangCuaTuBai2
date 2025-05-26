@@ -79,7 +79,7 @@
   <div class="checkout-title">
     <i class="fas fa-credit-card"></i> Thanh toán
   </div>
-  <form method="POST" action="/ProjectBanHangCuaTu2/Product/processCheckout">
+  <form method="POST" action="/ProjectBanHangCuaTuBai2/Product/processCheckout">
     <div class="form-group mb-3">
       <label for="name"><i class="fas fa-user"></i> Họ tên:</label>
       <input type="text" id="name" name="name" class="form-control" required>
@@ -96,7 +96,7 @@
       <button type="submit" class="btn btn-primary btn-3d">
         <i class="fas fa-credit-card"></i> Thanh toán
       </button>
-      <a href="/ProjectBanHangCuaTu2/Product/cart" class="btn btn-secondary btn-3d">
+      <a href="/ProjectBanHangCuaTuBai2/Product/cart" class="btn btn-secondary btn-3d">
         <i class="fas fa-arrow-left"></i> Quay lại giỏ hàng
       </a>
     </div>
