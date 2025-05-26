@@ -70,6 +70,13 @@
     font-size: 0.95rem;
     box-shadow: 0 1px 4px #6366f133;
   }
+
+  /* Căn giữa sản phẩm khi chỉ có một sản phẩm */
+  .row.single-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 <h1 class="mb-4 text-center"><i class="fas fa-boxes"></i> Danh sách sản phẩm</h1>
 <div class="text-right mb-3">
@@ -77,7 +84,7 @@
     <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
   </a>
 </div>
-<div class="row">
+<div class="row <?php echo count($products) === 1 ? 'single-product' : ''; ?>">
   <?php foreach ($products as $product): ?>
     <div class="col-md-6 col-lg-4">
       <div class="product-card p-4 mb-3">
