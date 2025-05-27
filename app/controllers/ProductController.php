@@ -3,20 +3,27 @@
 require_once('app/config/database.php');
 require_once('app/models/ProductModel.php');
 require_once('app/models/CategoryModel.php');
+
 class ProductController
 {
   private $productModel;
   private $db;
+
+  // Khởi tạo controller, kết nối DB và model
   public function __construct()
   {
     $this->db = (new Database())->getConnection();
     $this->productModel = new ProductModel($this->db);
   }
+
+  // Hiển thị danh sách sản phẩm
   public function index()
   {
     $products = $this->productModel->getProducts();
     include 'app/views/product/list.php';
   }
+
+  // Hiển thị chi tiết một sản phẩm
   public function show($id)
   {
     $product = $this->productModel->getProductById($id);
@@ -26,11 +33,15 @@ class ProductController
       echo "Không thấy sản phẩm.";
     }
   }
+
+  // Hiển thị form thêm sản phẩm mới
   public function add()
   {
     $categories = (new CategoryModel($this->db))->getCategories();
     include_once 'app/views/product/add.php';
   }
+
+  // Xử lý lưu sản phẩm mới
   public function save()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -51,14 +62,18 @@ class ProductController
         $image
       );
       if (is_array($result)) {
+        // Nếu có lỗi, hiển thị lại form với thông báo lỗi
         $errors = $result;
         $categories = (new CategoryModel($this->db))->getCategories();
         include 'app/views/product/add.php';
       } else {
+        // Thành công, chuyển về trang danh sách
         header('Location: /ProjectBanHangCuaTu2/Product');
       }
     }
   }
+
+  // Hiển thị form sửa sản phẩm
   public function edit($id)
   {
     $product = $this->productModel->getProductById($id);
@@ -69,6 +84,8 @@ class ProductController
       echo "Không thấy sản phẩm.";
     }
   }
+
+  // Xử lý cập nhật sản phẩm
   public function update()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -97,6 +114,8 @@ class ProductController
       }
     }
   }
+
+  // Xử lý xóa sản phẩm
   public function delete($id)
   {
     if ($this->productModel->deleteProduct($id)) {
@@ -105,6 +124,8 @@ class ProductController
       echo "Đã xảy ra lỗi khi xóa sản phẩm.";
     }
   }
+
+  // Hàm upload hình ảnh sản phẩm
   private function uploadImage($file)
   {
     $target_dir = "uploads/";
@@ -136,6 +157,8 @@ class ProductController
     }
     return $target_file;
   }
+
+  // Thêm sản phẩm vào giỏ hàng
   public function addToCart($id)
   {
     $product = $this->productModel->getProductById($id);
@@ -156,6 +179,7 @@ class ProductController
         'image' => $product->image
       ];
     }
+    // Đếm tổng số lượng sản phẩm trong giỏ
     $cart_qty = 0;
     if (!empty($_SESSION['cart'])) {
       foreach ($_SESSION['cart'] as $item) {
@@ -175,10 +199,13 @@ class ProductController
     header('Location: /ProjectBanHangCuaTu2/Product/list');
     exit;
   }
+
+  // Hiển thị giỏ hàng, loại bỏ sản phẩm không còn trong DB
   public function cart()
   {
     $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 
+    // Kiểm tra và loại bỏ sản phẩm không còn trong bảng product
     if (!empty($cart)) {
       $cart_ids = array_keys($cart);
       $pdo = $this->db;
@@ -196,6 +223,8 @@ class ProductController
 
     include 'app/views/product/Cart.php';
   }
+
+  // Xử lý cập nhật số lượng/xóa sản phẩm trong giỏ hàng (submit form)
   public function updateCart()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -212,6 +241,8 @@ class ProductController
     header('Location: /ProjectBanHangCuaTu2/Product/cart');
     exit;
   }
+
+  // Xử lý cập nhật số lượng/xóa sản phẩm trong giỏ hàng (AJAX)
   public function updateCartAjax()
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -243,10 +274,14 @@ class ProductController
       exit;
     }
   }
+
+  // Hiển thị trang thanh toán
   public function checkout()
   {
     include 'app/views/product/checkout.php';
   }
+
+  // Xử lý đặt hàng
   public function processCheckout()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -293,6 +328,8 @@ class ProductController
       }
     }
   }
+
+  // Hiển thị trang xác nhận đơn hàng
   public function orderConfirmation()
   {
     include 'app/views/product/orderConfirmation.php';

@@ -126,7 +126,7 @@
           <?php echo nl2br(htmlspecialchars($product->description, ENT_QUOTES, 'UTF-8')); ?>
         </div>
         <div class="mt-4 d-flex gap-2">
-          <a href="/ProjectBanHangCuaTu2/Product/addToCart/<?php echo $product->id; ?>"
+          <a href="/ProjectBanHangCuaTu2/Product/Cart/<?php echo $product->id; ?>"
             class="btn btn-success btn-3d px-4">
             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
           </a>
