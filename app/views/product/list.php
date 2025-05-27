@@ -70,27 +70,34 @@
     font-size: 0.95rem;
     box-shadow: 0 1px 4px #6366f133;
   }
+
+  /* Căn giữa sản phẩm khi chỉ có một sản phẩm */
+  .row.single-product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 <h1 class="mb-4 text-center"><i class="fas fa-boxes"></i> Danh sách sản phẩm</h1>
 <div class="text-right mb-3">
-  <a href="/ProjectBanHangCuaTu2/Product/add" class="btn btn-success btn-3d">
+  <a href="/ProjectBanHangCuaTuBai2/Product/add" class="btn btn-success btn-3d">
     <i class="fas fa-plus-circle"></i> Thêm sản phẩm mới
   </a>
 </div>
-<div class="row">
+<div class="row <?php echo count($products) === 1 ? 'single-product' : ''; ?>">
   <?php foreach ($products as $product): ?>
     <div class="col-md-6 col-lg-4">
       <div class="product-card p-4 mb-3">
         <div class="d-flex align-items-center mb-3">
           <?php if ($product->image): ?>
-            <img src="/ProjectBanHangCuaTu2/<?php echo $product->image; ?>" alt="Product Image" class="product-image mr-3 shadow">
+            <img src="/ProjectBanHangCuaTuBai2/<?php echo $product->image; ?>" alt="Product Image" class="product-image mr-3 shadow">
           <?php else: ?>
-            <img src="/ProjectBanHangCuaTu2/images/no-image.png" alt="No Image" class="product-image mr-3 shadow">
+            <img src="/ProjectBanHangCuaTuBai2/images/no-image.png" alt="No Image" class="product-image mr-3 shadow">
           <?php endif; ?>
           <div>
             <div class="product-title">
               <i class="fas fa-cube"></i>
-              <a href="/ProjectBanHangCuaTu2/Product/show/<?php echo $product->id; ?>" class="text-decoration-none text-dark">
+              <a href="/ProjectBanHangCuaTuBai2/Product/show/<?php echo $product->id; ?>" class="text-decoration-none text-dark">
                 <?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?>
               </a>
             </div>
@@ -106,10 +113,10 @@
           <?php echo number_format($product->price, 0, ',', '.'); ?> VND
         </div>
         <div class="d-flex gap-2">
-          <a href="/ProjectBanHangCuaTu2/Product/edit/<?php echo $product->id; ?>" class="btn btn-warning btn-3d mr-2">
+          <a href="/ProjectBanHangCuaTuBai2/Product/edit/<?php echo $product->id; ?>" class="btn btn-warning btn-3d mr-2">
             <i class="fas fa-edit"></i> Sửa
           </a>
-          <a href="/ProjectBanHangCuaTu2/Product/delete/<?php echo $product->id; ?>"
+          <a href="/ProjectBanHangCuaTuBai2/Product/delete/<?php echo $product->id; ?>"
             class="btn btn-danger btn-3d"
             onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
             <i class="fas fa-trash-alt"></i> Xóa
@@ -128,7 +135,7 @@
   document.querySelectorAll('.btn-add-to-cart').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var productId = this.getAttribute('data-id');
-      fetch('/ProjectBanHangCuaTu2/Product/addToCart/' + productId, {
+      fetch('/ProjectBanHangCuaTuBai2/Product/addToCart/' + productId, {
           method: 'GET',
           headers: {
             'X-Requested-With': 'XMLHttpRequest'

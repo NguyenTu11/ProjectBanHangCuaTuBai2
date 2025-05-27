@@ -62,16 +62,16 @@
     Sử dụng menu trên để truy cập các chức năng hoặc chọn nhanh bên dưới.
   </div>
   <div class="home-actions d-flex flex-wrap justify-content-center">
-    <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-info btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTuBai2/Product/" class="btn btn-info btn-3d mb-2">
       <i class="fas fa-boxes"></i> Danh sách sản phẩm
     </a>
-    <a href="/ProjectBanHangCuaTu2/Product/add" class="btn btn-success btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTuBai2/Product/add" class="btn btn-success btn-3d mb-2">
       <i class="fas fa-plus-circle"></i> Thêm sản phẩm
     </a>
-    <a href="/ProjectBanHangCuaTu2/Category/list" class="btn btn-primary btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTuBai2/Category/list" class="btn btn-primary btn-3d mb-2">
       <i class="fas fa-layer-group"></i> Danh sách danh mục
     </a>
-    <a href="/ProjectBanHangCuaTu2/Category/add" class="btn btn-warning btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTuBai2/Category/add" class="btn btn-warning btn-3d mb-2">
       <i class="fas fa-plus-circle"></i> Thêm danh mục
     </a>
   </div>

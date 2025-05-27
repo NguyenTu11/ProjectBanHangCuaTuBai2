@@ -67,7 +67,6 @@ class ProductController
         $categories = (new CategoryModel($this->db))->getCategories();
         include 'app/views/product/add.php';
       } else {
-        // Thành công, chuyển về trang danh sách
         header('Location: /ProjectBanHangCuaTu2/Product');
       }
     }
@@ -108,7 +107,7 @@ class ProductController
         $image
       );
       if ($edit) {
-        header('Location: /ProjectBanHangCuaTu2/Product');
+        header('Location: /ProjectBanHangCuaTuBai2/Product');
       } else {
         echo "Đã xảy ra lỗi khi lưu sản phẩm.";
       }
@@ -119,7 +118,7 @@ class ProductController
   public function delete($id)
   {
     if ($this->productModel->deleteProduct($id)) {
-      header('Location: /ProjectBanHangCuaTu2/Product');
+      header('Location: /ProjectBanHangCuaTuBai2/Product');
     } else {
       echo "Đã xảy ra lỗi khi xóa sản phẩm.";
     }
@@ -196,7 +195,7 @@ class ProductController
       exit;
     }
     // Nếu không phải AJAX thì chuyển hướng như cũ
-    header('Location: /ProjectBanHangCuaTu2/Product/list');
+    header('Location: /ProjectBanHangCuaTuBai2/Product/');
     exit;
   }
 
@@ -238,7 +237,7 @@ class ProductController
         }
       }
     }
-    header('Location: /ProjectBanHangCuaTu2/Product/cart');
+    header('Location: /ProjectBanHangCuaTuBai2/Product/cart');
     exit;
   }
 
@@ -320,7 +319,7 @@ class ProductController
         // Commit giao dịch
         $this->db->commit();
         // Chuyển hướng đến trang xác nhận đơn hàng
-        header('Location: /ProjectBanHangCuaTu2/Product/orderConfirmation');
+        header('Location: /ProjectBanHangCuaTuBai2/Product/orderConfirmation');
       } catch (Exception $e) {
         // Rollback giao dịch nếu có lỗi
         $this->db->rollBack();

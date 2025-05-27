@@ -33,7 +33,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" style="border-radius: 0 0 18px 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
-    <a class="navbar-brand d-flex align-items-center" href="/ProjectBanHangCuaTu2/Home">
+    <a class="navbar-brand d-flex align-items-center" href="/ProjectBanHangCuaTuBai2/Home">
       <i class="fas fa-store fa-lg mr-2 text-primary"></i> <span style="font-weight:bold;">Quản lý sản phẩm</span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -47,10 +47,10 @@
             <i class="fas fa-boxes mr-1"></i> Sản phẩm
           </a>
           <div class="dropdown-menu shadow-lg animate__animated animate__fadeIn" aria-labelledby="productDropdown" style="border-radius:12px;">
-            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTu2/Product/">
+            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTuBai2/Product/">
               <i class="fas fa-list mr-2 text-info"></i> Danh sách sản phẩm
             </a>
-            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTu2/Product/add">
+            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTuBai2/Product/add">
               <i class="fas fa-plus-circle mr-2 text-success"></i> Thêm sản phẩm
             </a>
           </div>
@@ -60,16 +60,16 @@
             <i class="fas fa-layer-group mr-1"></i> Danh mục
           </a>
           <div class="dropdown-menu shadow-lg animate__animated animate__fadeIn" aria-labelledby="categoryDropdown" style="border-radius:12px;">
-            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTu2/Category/list">
+            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTuBai2/Category/list">
               <i class="fas fa-list mr-2 text-info"></i> Danh sách danh mục
             </a>
-            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTu2/Category/add">
+            <a class="dropdown-item d-flex align-items-center" href="/ProjectBanHangCuaTuBai2/Category/add">
               <i class="fas fa-plus-circle mr-2 text-success"></i> Thêm danh mục
             </a>
           </div>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link d-flex align-items-center position-relative" href="/ProjectBanHangCuaTu2/Product/cart">
+          <a class="nav-link d-flex align-items-center position-relative" href="/ProjectBanHangCuaTuBai2/Product/cart">
             <i class="fas fa-shopping-cart fa-lg mr-1 text-primary"></i> Giỏ hàng
             <span id="cart-badge" class="badge badge-danger position-absolute" style="top:2px;right:-18px;min-width:22px;">
               <?php echo !empty($_SESSION['cart']) ? array_sum(array_column($_SESSION['cart'], 'quantity')) : 0; ?>

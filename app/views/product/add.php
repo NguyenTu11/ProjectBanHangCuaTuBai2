@@ -111,7 +111,7 @@
       </ul>
     </div>
   <?php endif; ?>
-  <form method="POST" action="/ProjectBanHangCuaTu2/Product/save" enctype="multipart/form-data"
+  <form method="POST" action="/ProjectBanHangCuaTuBai2/Product/save" enctype="multipart/form-data"
     onsubmit="return validateForm();">
     <div class="form-group mb-3">
       <label for="name"><i class="fas fa-cube"></i> Tên sản phẩm:</label>
@@ -141,7 +141,7 @@
       <i class="fas fa-plus"></i> Thêm sản phẩm
     </button>
   </form>
-  <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-secondary btn-3d mt-3 w-100">
+  <a href="/ProjectBanHangCuaTuBai2/Product/" class="btn btn-secondary btn-3d mt-3 w-100">
     <i class="fas fa-arrow-left"></i> Quay lại danh sách sản phẩm
   </a>
 </div>
