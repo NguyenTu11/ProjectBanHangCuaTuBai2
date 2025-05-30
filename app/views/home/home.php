@@ -108,7 +108,8 @@
   }
 
   .home-card {
-    background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+    background: rgba(255, 255, 255, 0.18);
+    /* Nền trong suốt */
     border-radius: 24px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12), 0 1.5px 4px rgba(0, 0, 0, 0.08);
     padding: 48px 32px 40px 32px;
@@ -118,6 +119,9 @@
     animation: fadeInUp 0.7s;
     transition: transform 0.3s cubic-bezier(.25, .8, .25, 1), box-shadow 0.3s;
     perspective: 800px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
   }
 
   .home-card:hover {
@@ -160,68 +164,37 @@
     margin: 8px 12px;
   }
 
-  .home-card-glass {
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 24px;
-    box-shadow: 0 4px 32px 0 rgba(99, 102, 241, 0.18), 0 1.5px 4px rgba(0, 0, 0, 0.08), 0 0 32px 8px #38bdf855;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1.5px solid rgba(255, 255, 255, 0.22);
-    position: relative;
-    overflow: hidden;
-    animation: homeGlow 2.5s infinite alternate;
+  /* Pastel button colors */
+  .pastel-blue {
+    background: #a5d8ff !important;
+    color: #22577a !important;
+    border: none;
   }
 
-  @keyframes homeGlow {
-    0% {
-      box-shadow: 0 4px 32px 0 #38bdf855, 0 1.5px 4px #0002;
-    }
-
-    100% {
-      box-shadow: 0 8px 48px 0 #6366f188, 0 3px 12px #0003;
-    }
+  .pastel-green {
+    background: #b9fbc0 !important;
+    color: #22577a !important;
+    border: none;
   }
 
-  .home-title-gradient {
-    background: linear-gradient(90deg, #6366f1 20%, #38bdf8 40%, #f472b6 70%, #facc15 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-weight: bold;
-    font-size: 2.4rem;
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    text-shadow: 0 2px 12px #fff8, 0 1px 8px #6366f188;
-    animation: gradientMove 4s linear infinite;
+  .pastel-purple {
+    background: #d0bfff !important;
+    color: #4b3869 !important;
+    border: none;
   }
 
-  @keyframes gradientMove {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    100% {
-      background-position: 100% 50%;
-    }
+  .pastel-yellow {
+    background: #fff3bf !important;
+    color: #a17a0a !important;
+    border: none;
   }
 
-  .home-slogan {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #f59e42;
-    margin-bottom: 18px;
-    letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px #facc1555;
-    animation: statPulse 1.2s infinite alternate;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+  .pastel-blue:hover,
+  .pastel-green:hover,
+  .pastel-purple:hover,
+  .pastel-yellow:hover {
+    filter: brightness(0.97) saturate(1.2);
+    box-shadow: 0 6px 24px #6366f122;
   }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -236,16 +209,16 @@
     Sử dụng menu trên để truy cập các chức năng hoặc chọn nhanh bên dưới.
   </div>
   <div class="home-actions d-flex flex-wrap justify-content-center">
-    <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-info btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-3d pastel-blue mb-2">
       <i class="fas fa-boxes"></i> Danh sách sản phẩm
     </a>
-    <a href="/ProjectBanHangCuaTu2/Product/add" class="btn btn-success btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTu2/Product/add" class="btn btn-3d pastel-green mb-2">
       <i class="fas fa-plus-circle"></i> Thêm sản phẩm
     </a>
-    <a href="/ProjectBanHangCuaTu2/Category/list" class="btn btn-primary btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTu2/Category/list" class="btn btn-3d pastel-purple mb-2">
       <i class="fas fa-layer-group"></i> Danh sách danh mục
     </a>
-    <a href="/ProjectBanHangCuaTu2/Category/add" class="btn btn-warning btn-3d mb-2">
+    <a href="/ProjectBanHangCuaTu2/Category/add" class="btn btn-3d pastel-yellow mb-2">
       <i class="fas fa-plus-circle"></i> Thêm danh mục
     </a>
   </div>

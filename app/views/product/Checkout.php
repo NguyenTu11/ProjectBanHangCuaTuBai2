@@ -1,3 +1,10 @@
+<?php
+require_once 'app/helpers/SessionHelper.php';
+if (!SessionHelper::isLoggedIn()) {
+  header('Location: /ProjectBanHangCuaTu2/account/login');
+  exit;
+}
+?>
 <?php include 'app/views/shares/header.php'; ?>
 <style>
   body {

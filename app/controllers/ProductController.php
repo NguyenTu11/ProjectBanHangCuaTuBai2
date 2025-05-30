@@ -16,6 +16,12 @@ class ProductController
     $this->productModel = new ProductModel($this->db);
   }
 
+  // Kiểm tra quyền Admin
+  private function isAdmin()
+  {
+    return SessionHelper::isAdmin();
+  }
+
   // Hiển thị danh sách sản phẩm
   public function index()
   {
@@ -34,16 +40,24 @@ class ProductController
     }
   }
 
-  // Hiển thị form thêm sản phẩm mới
+  // Hiển thị form thêm sản phẩm mới (chỉ Admin)
   public function add()
   {
+    if (!$this->isAdmin()) {
+      header('Location: /ProjectBanHangCuaTu2/Product');
+      exit;
+    }
     $categories = (new CategoryModel($this->db))->getCategories();
     include_once 'app/views/product/add.php';
   }
 
-  // Xử lý lưu sản phẩm mới
+  // Xử lý lưu sản phẩm mới (chỉ Admin)
   public function save()
   {
+    if (!$this->isAdmin()) {
+      header('Location: /ProjectBanHangCuaTu2/Product');
+      exit;
+    }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $name = $_POST['name'] ?? '';
       $description = $_POST['description'] ?? '';
@@ -74,9 +88,13 @@ class ProductController
     }
   }
 
-  // Hiển thị form sửa sản phẩm
+  // Hiển thị form sửa sản phẩm (chỉ Admin)
   public function edit($id)
   {
+    if (!$this->isAdmin()) {
+      header('Location: /ProjectBanHangCuaTu2/Product');
+      exit;
+    }
     $product = $this->productModel->getProductById($id);
     $categories = (new CategoryModel($this->db))->getCategories();
     if ($product) {
@@ -86,9 +104,13 @@ class ProductController
     }
   }
 
-  // Xử lý cập nhật sản phẩm
+  // Xử lý cập nhật sản phẩm (chỉ Admin)
   public function update()
   {
+    if (!$this->isAdmin()) {
+      header('Location: /ProjectBanHangCuaTu2/Product');
+      exit;
+    }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $id = $_POST['id'];
       $name = $_POST['name'];
@@ -119,9 +141,13 @@ class ProductController
     }
   }
 
-  // Xử lý xóa sản phẩm
+  // Xử lý xóa sản phẩm (chỉ Admin)
   public function delete($id)
   {
+    if (!$this->isAdmin()) {
+      header('Location: /ProjectBanHangCuaTu2/Product');
+      exit;
+    }
     $product = $this->productModel->getProductById($id);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($this->productModel->deleteProduct($id)) {

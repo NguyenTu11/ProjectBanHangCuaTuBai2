@@ -264,13 +264,15 @@ if (count($products) === 2) $rowClass = 'double-product';
           </div>
         <?php endif; ?>
         <div class="d-flex gap-2">
-          <a href="/ProjectBanHangCuaTu2/Product/edit/<?php echo $product->id; ?>" class="btn btn-warning btn-3d mr-2">
-            <i class="fas fa-edit"></i> Sửa
-          </a>
-          <a href="/ProjectBanHangCuaTu2/Product/delete/<?php echo $product->id; ?>"
-            class="btn btn-danger btn-3d">
-            <i class="fas fa-trash-alt"></i> Xóa
-          </a>
+          <?php if (SessionHelper::isLoggedIn() && SessionHelper::getRole() === 'admin'): ?>
+            <a href="/ProjectBanHangCuaTu2/Product/edit/<?php echo $product->id; ?>" class="btn btn-warning btn-3d mr-2">
+              <i class="fas fa-edit"></i> Sửa
+            </a>
+            <a href="/ProjectBanHangCuaTu2/Product/delete/<?php echo $product->id; ?>"
+              class="btn btn-danger btn-3d">
+              <i class="fas fa-trash-alt"></i> Xóa
+            </a>
+          <?php endif; ?>
           <a href="javascript:void(0);"
             class="btn btn-primary btn-3d ml-2 btn-add-to-cart"
             data-id="<?php echo $product->id; ?>">
