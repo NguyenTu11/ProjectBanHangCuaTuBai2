@@ -1,5 +1,27 @@
 <?php include 'app/views/shares/header.php'; ?>
 <style>
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(-45deg, #6366f1, #38bdf8, #f472b6, #facc15);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   .category-detail-card {
     background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
     border-radius: 20px;
@@ -50,14 +72,31 @@
   }
 
   .btn-3d {
-    box-shadow: 0 4px 0 #bdbdbd;
-    transition: transform 0.1s, box-shadow 0.1s;
-    border-radius: 8px;
+    box-shadow: 0 4px 0 #bdbdbd, 0 2px 12px #6366f133;
+    transition: transform 0.18s cubic-bezier(.25, .8, .25, 1), box-shadow 0.18s, background 0.18s, color 0.18s;
+    border-radius: 10px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(90deg, #6366f1 60%, #38bdf8 100%);
+    color: #fff;
+    min-width: 110px;
   }
 
   .btn-3d:active {
-    transform: translateY(2px);
+    transform: translateY(2px) scale(0.98);
     box-shadow: 0 2px 0 #bdbdbd;
+  }
+
+  .btn-3d:hover,
+  .btn-3d:focus {
+    transform: translateY(-2px) scale(1.04) rotateY(-2deg);
+    box-shadow: 0 8px 24px #6366f155, 0 2px 12px #6366f133;
+    filter: brightness(1.08);
+    color: #fff !important;
+    text-decoration: none;
   }
 </style>
 <div class="category-detail-card">

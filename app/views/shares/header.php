@@ -28,11 +28,71 @@
       transform: translateX(4px) scale(1.04);
       transition: all 0.2s;
     }
+
+    .navbar-glass {
+      background: rgba(255, 255, 255, 0.18) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.18);
+      transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1), transform 0.3s;
+    }
+
+    .navbar-glass:hover {
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 3px 8px rgba(0, 0, 0, 0.12);
+      transform: scale(1.01) perspective(800px) rotateY(2deg);
+    }
+
+    .navbar .nav-link,
+    .navbar .navbar-brand {
+      color: #2d3748 !important;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .navbar-brand:hover {
+      color: #6366f1 !important;
+    }
+
+    .badge-danger {
+      background: linear-gradient(90deg, #ef4444 60%, #f87171 100%);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px #ef444444;
+    }
+
+    .dropdown-menu {
+      background: rgba(255, 255, 255, 0.22) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+      color: #2d3748;
+      transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1), transform 0.3s;
+    }
+
+    .dropdown-menu .dropdown-item {
+      color: #2d3748 !important;
+      font-weight: 600;
+      border-radius: 8px;
+      margin-bottom: 2px;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+      background: linear-gradient(90deg, #6366f1 20%, #38bdf8 80%);
+      color: #fff !important;
+      transform: translateX(4px) scale(1.04);
+      text-shadow: 0 2px 8px #6366f144;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" style="border-radius: 0 0 18px 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
+  <nav class="navbar navbar-expand-lg navbar-glass shadow" style="border-radius: 0 0 18px 18px; box-shadow: 0 4px 24px rgba(0,0,0,0.10);">
     <a class="navbar-brand d-flex align-items-center" href="/ProjectBanHangCuaTu2/Home">
       <i class="fas fa-store fa-lg mr-2 text-primary"></i> <span style="font-weight:bold;">Quản lý sản phẩm</span>
     </a>

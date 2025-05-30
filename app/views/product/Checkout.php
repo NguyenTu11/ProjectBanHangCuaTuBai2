@@ -1,9 +1,34 @@
 <?php include 'app/views/shares/header.php'; ?>
 <style>
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(-45deg, #e0e7ff, #f8fafc, #38bdf8, #facc15);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   .checkout-card {
-    background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
-    border-radius: 22px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13), 0 1.5px 4px rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(56, 189, 248, 0.18), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+    border: 2px solid #38bdf8;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 36px 32px 28px 32px;
     max-width: 520px;
     margin: 48px auto 0 auto;
@@ -14,7 +39,7 @@
 
   .checkout-card:hover {
     transform: scale(1.02) rotateY(3deg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 3px 8px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 12px 36px rgba(56, 189, 248, 0.22), 0 3px 12px rgba(0, 0, 0, 0.13);
   }
 
   @keyframes fadeInUp {
@@ -79,6 +104,15 @@
   <div class="checkout-title">
     <i class="fas fa-credit-card"></i> Thanh toán
   </div>
+  <?php if (!empty($errors)): ?>
+    <div class="alert alert-danger">
+      <ul>
+        <?php foreach ($errors as $error): ?>
+          <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  <?php endif; ?>
   <form method="POST" action="/ProjectBanHangCuaTu2/Product/processCheckout">
     <div class="form-group mb-3">
       <label for="name"><i class="fas fa-user"></i> Họ tên:</label>

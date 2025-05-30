@@ -1,9 +1,34 @@
 <?php include 'app/views/shares/header.php'; ?>
 <style>
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(-45deg, #6366f1, #38bdf8, #f8fafc, #facc15);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   .cart-card {
-    background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
-    border-radius: 22px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13), 0 1.5px 4px rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.20);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.18), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+    border: 2px solid #6366f1;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 36px 32px 28px 32px;
     max-width: 700px;
     margin: 48px auto 0 auto;
@@ -14,7 +39,7 @@
 
   .cart-card:hover {
     transform: scale(1.02) rotateY(3deg);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 3px 8px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 12px 36px rgba(99, 102, 241, 0.22), 0 3px 12px rgba(0, 0, 0, 0.13);
   }
 
   @keyframes fadeInUp {
@@ -235,7 +260,7 @@
         $item_total = $item['price'] * $item['quantity'];
         $tong_tien += $item_total;
       ?>
-        <li class="cart-item">
+        <li class="cart-item" data-id="<?php echo $id; ?>">
           <?php if ($item['image']): ?>
             <img src="/ProjectBanHangCuaTu2/<?php echo $item['image']; ?>" alt="Product Image" class="cart-img">
           <?php else: ?>
@@ -287,6 +312,7 @@
     </div>
   <?php endif; ?>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   document.querySelectorAll('.cart-qty-form').forEach(function(form) {
     form.addEventListener('submit', function(e) {
@@ -332,26 +358,55 @@
     });
   });
 
-  // Xoá sản phẩm bằng AJAX
+  // Xoá sản phẩm bằng AJAX với hiệu ứng và thông báo đẹp
   function removeCartItem(id) {
-    if (!confirm('Xoá sản phẩm này khỏi giỏ hàng?')) return;
-    fetch('/ProjectBanHangCuaTu2/Product/updateCartAjax', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'id=' + encodeURIComponent(id) + '&remove=1'
-      })
-      .then(res => res.json())
-      .then(data => {
-        var li = document.querySelector('.cart-qty-form[data-id="' + id + '"]').closest('.cart-item');
-        if (li) li.remove();
-        document.getElementById('cart-total').innerHTML = 'Tổng tiền: ' + data.cart_total + ' VND';
-        if (data.cart_qty !== undefined && document.getElementById('cart-badge')) {
-          document.getElementById('cart-badge').textContent = data.cart_qty;
-        }
-        if (data.cart_qty == 0) location.reload();
-      });
+    Swal.fire({
+      title: 'Bạn chắc chắn muốn xoá?',
+      text: "Sản phẩm sẽ bị xoá khỏi giỏ hàng!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ef4444',
+      cancelButtonColor: '#6366f1',
+      confirmButtonText: 'Xoá',
+      cancelButtonText: 'Huỷ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch('/ProjectBanHangCuaTu2/Product/updateCartAjax', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'id=' + encodeURIComponent(id) + '&remove=1'
+          })
+          .then(res => res.json())
+          .then(data => {
+            var li = document.querySelector('.cart-item[data-id="' + id + '"]');
+            if (li) {
+              li.classList.add('animate__animated', 'animate__fadeOutRight');
+              setTimeout(() => {
+                li.remove();
+              }, 500);
+            }
+            document.getElementById('cart-total').innerHTML = 'Tổng tiền: ' + data.cart_total + ' VND';
+            if (data.cart_qty !== undefined && document.getElementById('cart-badge')) {
+              document.getElementById('cart-badge').textContent = data.cart_qty;
+            }
+            Swal.fire({
+              icon: 'success',
+              title: 'Đã xoá!',
+              text: 'Sản phẩm đã được xoá khỏi giỏ hàng. Hãy chọn sản phẩm khác nếu bạn muốn!',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              timer: 1600,
+              timerProgressBar: true,
+              confirmButtonColor: '#38bdf8'
+            });
+            if (data.cart_qty == 0) setTimeout(() => location.reload(), 900);
+          });
+      }
+    });
   }
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <?php include 'app/views/shares/footer.php'; ?>

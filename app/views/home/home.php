@@ -1,5 +1,112 @@
 <?php include 'app/views/shares/header.php'; ?>
 <style>
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(-45deg, #6366f1, #38bdf8, #f472b6, #facc15);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 40px 0 32px 0;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(56, 189, 248, 0.18), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+    padding: 28px 24px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInUp 0.7s;
+    transition: transform 0.3s cubic-bezier(.25, .8, .25, 1), box-shadow 0.3s;
+    perspective: 800px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    color: #2d3748;
+  }
+
+  .stat-card:nth-child(2) {
+    background: linear-gradient(135deg, #f472b6 40%, #facc15 100%);
+    color: #fff;
+  }
+
+  .stat-card:nth-child(3) {
+    background: linear-gradient(135deg, #38bdf8 40%, #facc15 100%);
+    color: #fff;
+  }
+
+  .stat-card:hover {
+    transform: scale(1.06) rotateY(6deg);
+    box-shadow: 0 16px 48px 0 rgba(56, 189, 248, 0.22), 0 3px 12px rgba(0, 0, 0, 0.13);
+  }
+
+  .stat-icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 2px 8px #fff5);
+    color: #6366f1;
+  }
+
+  .stat-card:nth-child(2) .stat-icon {
+    color: #f472b6;
+  }
+
+  .stat-card:nth-child(3) .stat-icon {
+    color: #facc15;
+  }
+
+  .stat-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-shadow: 0 2px 8px #0002;
+  }
+
+  .stat-value {
+    font-size: 2.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    animation: statPulse 1.2s infinite alternate;
+    text-shadow: 0 2px 12px #fff8, 0 1px 8px #6366f188;
+    color: #4f46e5;
+  }
+
+  @keyframes statPulse {
+    0% {
+      text-shadow: 0 0 0 #fff8, 0 1px 8px #6366f188;
+    }
+
+    100% {
+      text-shadow: 0 0 18px #fff, 0 2px 16px #6366f1aa;
+    }
+  }
+
   .home-card {
     background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
     border-radius: 24px;
@@ -52,7 +159,74 @@
     min-width: 180px;
     margin: 8px 12px;
   }
+
+  .home-card-glass {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 24px;
+    box-shadow: 0 4px 32px 0 rgba(99, 102, 241, 0.18), 0 1.5px 4px rgba(0, 0, 0, 0.08), 0 0 32px 8px #38bdf855;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(255, 255, 255, 0.22);
+    position: relative;
+    overflow: hidden;
+    animation: homeGlow 2.5s infinite alternate;
+  }
+
+  @keyframes homeGlow {
+    0% {
+      box-shadow: 0 4px 32px 0 #38bdf855, 0 1.5px 4px #0002;
+    }
+
+    100% {
+      box-shadow: 0 8px 48px 0 #6366f188, 0 3px 12px #0003;
+    }
+  }
+
+  .home-title-gradient {
+    background: linear-gradient(90deg, #6366f1 20%, #38bdf8 40%, #f472b6 70%, #facc15 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    text-shadow: 0 2px 12px #fff8, 0 1px 8px #6366f188;
+    animation: gradientMove 4s linear infinite;
+  }
+
+  @keyframes gradientMove {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .home-slogan {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f59e42;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px #facc1555;
+    animation: statPulse 1.2s infinite alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+<!-- Card chào mừng giữ nguyên -->
 <div class="home-card">
   <div class="home-title">
     <i class="fas fa-home"></i> Chào mừng đến với hệ thống quản lý sản phẩm
@@ -74,6 +248,25 @@
     <a href="/ProjectBanHangCuaTu2/Category/add" class="btn btn-warning btn-3d mb-2">
       <i class="fas fa-plus-circle"></i> Thêm danh mục
     </a>
+  </div>
+</div>
+
+<!-- Thẻ thống kê -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-boxes"></i></div>
+    <div class="stat-label">Tổng sản phẩm</div>
+    <div class="stat-value"><?php echo $totalProducts ?? 0; ?></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+    <div class="stat-label">Tổng danh mục</div>
+    <div class="stat-value"><?php echo $totalCategories ?? 0; ?></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon"><i class="fas fa-coins"></i></div>
+    <div class="stat-label">Tổng tiền sản phẩm</div>
+    <div class="stat-value"><?php echo isset($totalAmount) ? number_format($totalAmount, 0, ',', '.') . ' VND' : '0 VND'; ?></div>
   </div>
 </div>
 <?php include 'app/views/shares/footer.php'; ?>

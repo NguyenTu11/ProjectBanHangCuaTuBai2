@@ -1,4 +1,7 @@
 <?php
+require_once 'app/models/ProductModel.php';
+require_once 'app/models/CategoryModel.php';
+
 class CategoryModel
 {
   private $conn;
@@ -22,7 +25,7 @@ class CategoryModel
   // Lấy thông tin chi tiết một danh mục theo ID
   public function getCategoryById($id)
   {
-    $query = "SELECT id, name, description FROM " . $this->table_name . " WHERE id = :id";
+    $query = "SELECT * FROM category WHERE id = :id";
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':id', $id);
     $stmt->execute();
@@ -57,5 +60,19 @@ class CategoryModel
     $stmt = $this->conn->prepare($query);
     $stmt->bindParam(':id', $id);
     return $stmt->execute();
+  }
+
+  public static function countAll()
+  {
+    $db = static::getDB();
+    $stmt = $db->query("SELECT COUNT(*) FROM category");
+    return $stmt->fetchColumn();
+  }
+
+  public static function getDB()
+  {
+    require_once __DIR__ . '/../config/database.php';
+    $database = new Database();
+    return $database->getConnection();
   }
 }

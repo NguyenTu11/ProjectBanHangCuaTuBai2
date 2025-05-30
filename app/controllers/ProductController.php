@@ -1,8 +1,8 @@
 <?php
 // Require SessionHelper and other necessary files
 require_once('app/config/database.php');
-require_once('app/models/ProductModel.php');
-require_once('app/models/CategoryModel.php');
+require_once 'app/models/ProductModel.php';
+require_once 'app/models/CategoryModel.php';
 
 class ProductController
 {
@@ -54,12 +54,14 @@ class ProductController
       } else {
         $image = "";
       }
+      $stock = $_POST['stock'] ?? 0;
       $result = $this->productModel->addProduct(
         $name,
         $description,
         $price,
         $category_id,
-        $image
+        $image,
+        $stock,
       );
       if (is_array($result)) {
         // Nếu có lỗi, hiển thị lại form với thông báo lỗi
@@ -93,18 +95,21 @@ class ProductController
       $description = $_POST['description'];
       $price = $_POST['price'];
       $category_id = $_POST['category_id'];
+      $stock = $_POST['stock']; // LẤY GIÁ TRỊ SỐ LƯỢNG TỒN
       if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $image = $this->uploadImage($_FILES['image']);
       } else {
         $image = $_POST['existing_image'];
       }
+      // TRUYỀN $stock VÀO HÀM updateProduct
       $edit = $this->productModel->updateProduct(
         $id,
         $name,
         $description,
         $price,
         $category_id,
-        $image
+        $image,
+        $stock
       );
       if ($edit) {
         header('Location: /ProjectBanHangCuaTu2/Product');
@@ -117,10 +122,20 @@ class ProductController
   // Xử lý xóa sản phẩm
   public function delete($id)
   {
-    if ($this->productModel->deleteProduct($id)) {
-      header('Location: /ProjectBanHangCuaTu2/Product');
+    $product = $this->productModel->getProductById($id);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      if ($this->productModel->deleteProduct($id)) {
+        header('Location: /ProjectBanHangCuaTu2/Product');
+        exit;
+      } else {
+        echo "Đã xảy ra lỗi khi xóa sản phẩm.";
+      }
     } else {
-      echo "Đã xảy ra lỗi khi xóa sản phẩm.";
+      if ($product) {
+        include 'app/views/product/delete.php';
+      } else {
+        echo "Không tìm thấy sản phẩm.";
+      }
     }
   }
 
@@ -162,11 +177,27 @@ class ProductController
   {
     $product = $this->productModel->getProductById($id);
     if (!$product) {
+      if ($this->isAjax()) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Không tìm thấy sản phẩm.']);
+        exit;
+      }
       echo "Không tìm thấy sản phẩm.";
       return;
     }
     if (!isset($_SESSION['cart'])) {
       $_SESSION['cart'] = [];
+    }
+    $currentQty = isset($_SESSION['cart'][$id]) ? $_SESSION['cart'][$id]['quantity'] : 0;
+    if ($product->stock <= $currentQty) {
+      if ($this->isAjax()) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Sản phẩm đã hết hàng hoặc vượt quá số lượng tồn kho!']);
+        exit;
+      }
+      // Nếu không phải AJAX, hiển thị lỗi và dừng lại (không chuyển trang)
+      echo "<script>alert('Sản phẩm đã hết hàng hoặc vượt quá số lượng tồn kho!');history.back();</script>";
+      exit;
     }
     if (isset($_SESSION['cart'][$id])) {
       $_SESSION['cart'][$id]['quantity']++;
@@ -178,25 +209,23 @@ class ProductController
         'image' => $product->image
       ];
     }
-    // Đếm tổng số lượng sản phẩm trong giỏ
     $cart_qty = 0;
-    if (!empty($_SESSION['cart'])) {
-      foreach ($_SESSION['cart'] as $item) {
-        $cart_qty += $item['quantity'];
-      }
+    foreach ($_SESSION['cart'] as $item) {
+      $cart_qty += $item['quantity'];
     }
-    // Nếu là AJAX thì trả về JSON
-    if (
-      isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-      strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest'
-    ) {
+    if ($this->isAjax()) {
       header('Content-Type: application/json');
       echo json_encode(['cart_qty' => $cart_qty]);
       exit;
     }
-    // Nếu không phải AJAX thì chuyển hướng như cũ
     header('Location: /ProjectBanHangCuaTu2/Product/');
     exit;
+  }
+
+  // Thêm hàm tiện ích kiểm tra AJAX
+  private function isAjax()
+  {
+    return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
   }
 
   // Hiển thị giỏ hàng, loại bỏ sản phẩm không còn trong DB
@@ -246,14 +275,34 @@ class ProductController
   {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $id = $_POST['id'];
+      $qty = isset($_POST['quantity']) ? max(1, intval($_POST['quantity'])) : 1;
+
+      // Lấy thông tin sản phẩm từ DB để kiểm tra tồn kho
+      $product = $this->productModel->getProductById($id);
+      if (!$product) {
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Sản phẩm không tồn tại!']);
+        exit;
+      }
+
+      // Kiểm tra tồn kho
+      if ($qty > $product->stock) {
+        header('Content-Type: application/json');
+        echo json_encode([
+          'error' => 'Số lượng vượt quá tồn kho!',
+          'max_stock' => $product->stock
+        ]);
+        exit;
+      }
+
       if (isset($_POST['remove'])) {
         unset($_SESSION['cart'][$id]);
       } else {
-        $qty = max(1, intval($_POST['quantity']));
         if (isset($_SESSION['cart'][$id])) {
           $_SESSION['cart'][$id]['quantity'] = $qty;
         }
       }
+
       // Tính lại tổng tiền và thành tiền từng sản phẩm
       $item_total = isset($_SESSION['cart'][$id]) ? number_format($_SESSION['cart'][$id]['price'] * $_SESSION['cart'][$id]['quantity'], 0, ',', '.') : '0';
       $cart_total = 0;
@@ -292,6 +341,23 @@ class ProductController
         echo "Giỏ hàng trống.";
         return;
       }
+
+      // Kiểm tra tồn kho từng sản phẩm trước khi đặt hàng
+      $cart = $_SESSION['cart'];
+      $errors = [];
+      foreach ($cart as $product_id => $item) {
+        $product = $this->productModel->getProductById($product_id);
+        if (!$product || $item['quantity'] > $product->stock) {
+          $errors[] = "Sản phẩm '{$item['name']}' không đủ số lượng tồn kho. Vui lòng kiểm tra lại giỏ hàng.";
+        }
+      }
+      if (!empty($errors)) {
+        // Hiển thị lại trang checkout với thông báo lỗi
+        $cart = $_SESSION['cart'];
+        include 'app/views/product/Checkout.php';
+        return;
+      }
+
       // Bắt đầu giao dịch
       $this->db->beginTransaction();
       try {
@@ -306,6 +372,7 @@ class ProductController
         // Lưu chi tiết đơn hàng vào bảng order_details
         $cart = $_SESSION['cart'];
         foreach ($cart as $product_id => $item) {
+          // Lưu chi tiết đơn hàng
           $query = "INSERT INTO order_details (order_id, product_id, quantity, price) VALUES (:order_id, :product_id, :quantity, :price)";
           $stmt = $this->db->prepare($query);
           $stmt->bindParam(':order_id', $order_id);
@@ -313,6 +380,12 @@ class ProductController
           $stmt->bindParam(':quantity', $item['quantity']);
           $stmt->bindParam(':price', $item['price']);
           $stmt->execute();
+
+          // Giảm tồn kho sản phẩm
+          $updateStock = $this->db->prepare("UPDATE product SET stock = stock - :qty WHERE id = :id AND stock >= :qty");
+          $updateStock->bindParam(':qty', $item['quantity'], PDO::PARAM_INT);
+          $updateStock->bindParam(':id', $product_id, PDO::PARAM_INT);
+          $updateStock->execute();
         }
         // Xóa giỏ hàng sau khi đặt hàng thành công
         unset($_SESSION['cart']);

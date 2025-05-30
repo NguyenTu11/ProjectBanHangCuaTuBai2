@@ -1,4 +1,4 @@
-<footer class="bg-light text-center text-lg-start mt-4 shadow" style="border-radius: 18px 18px 0 0; box-shadow: 0 -4px 24px rgba(0,0,0,0.10);">
+<footer class="footer-glass text-center text-lg-start mt-4 shadow" style="border-radius: 18px 18px 0 0; box-shadow: 0 -4px 24px rgba(0,0,0,0.10);">
   <div class="container p-4">
     <div class="row">
       <!-- Cột thông tin liên hệ -->
@@ -54,11 +54,26 @@
     </div>
   </div>
   <!-- Dòng bản quyền -->
-  <div class="text-center p-3 bg-dark text-white" style="border-radius: 0 0 18px 18px;">
-    © 2025 Quản lý sản phẩm. All rights reserved.
+  <div class="text-center p-3 copyright-glass">
+    <span class="copyright-text">
+      © 2025 Quản lý sản phẩm. All rights reserved.
+    </span>
   </div>
 </footer>
 <style>
+  .footer-glass {
+    background: rgba(255, 255, 255, 0.18) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1), transform 0.3s;
+  }
+
+  .footer-glass:hover {
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18), 0 -3px 8px rgba(0, 0, 0, 0.12);
+    transform: scale(1.01) perspective(800px) rotateY(-2deg);
+  }
+
   .footer-link {
     transition: background 0.2s, color 0.2s, transform 0.2s;
     border-radius: 8px;
@@ -86,15 +101,31 @@
     text-decoration: none;
   }
 
-  footer.bg-light {
-    transition: box-shadow 0.3s cubic-bezier(.25, .8, .25, 1), transform 0.3s;
+  .copyright-glass {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 0 0 18px 18px;
+    border-top: 1.5px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 -2px 16px 0 rgba(31, 38, 135, 0.10);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 1.08rem;
+    margin-top: -2px;
   }
 
-  footer.bg-light:hover {
-    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.18), 0 -3px 8px rgba(0, 0, 0, 0.12);
-    transform: scale(1.01) perspective(800px) rotateY(-2deg);
+  .copyright-text {
+    background: linear-gradient(90deg, #6366f1 20%, #38bdf8 40%, #f472b6 70%, #facc15 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #6366f144;
   }
 </style>
 <!-- Font Awesome Icons -->
 <script src="https://kit.fontawesome.com/a076d05399.js"
   crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

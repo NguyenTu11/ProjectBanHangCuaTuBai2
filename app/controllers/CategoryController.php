@@ -1,6 +1,7 @@
 <?php
 require_once('app/config/database.php');
 require_once('app/models/CategoryModel.php');
+require_once 'app/models/ProductModel.php';
 
 class CategoryController
 {
@@ -109,11 +110,20 @@ class CategoryController
   // Xóa danh mục
   public function delete($id)
   {
-    $result = $this->categoryModel->deleteCategory($id);
-    if ($result) {
-      header('Location: /ProjectBanHangCuaTu2/Category/list');
+    $category = $this->categoryModel->getCategoryById($id);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($this->categoryModel->deleteCategory($id)) {
+            header('Location: /ProjectBanHangCuaTu2/Category/list');
+            exit;
+        } else {
+            echo "Đã xảy ra lỗi khi xóa danh mục.";
+        }
     } else {
-      echo "Đã xảy ra lỗi khi xóa danh mục.";
+        if ($category) {
+            include 'app/views/categories/delete.php';
+        } else {
+            echo "Không tìm thấy danh mục.";
+        }
     }
   }
 }
