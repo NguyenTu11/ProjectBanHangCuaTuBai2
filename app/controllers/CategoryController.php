@@ -57,7 +57,7 @@ class CategoryController
       } else {
         $result = $this->categoryModel->addCategory($name, $description);
         if ($result) {
-          header('Location: /ProjectBanHangCuaTuBai2/Category/list');
+          header('Location: /ProjectBanHangCuaTu2/Category/list');
         } else {
           echo "Đã xảy ra lỗi khi thêm danh mục.";
         }
@@ -98,7 +98,7 @@ class CategoryController
       } else {
         $result = $this->categoryModel->updateCategory($id, $name, $description);
         if ($result) {
-          header('Location: /ProjectBanHangCuaTuBai2/Category/list');
+          header('Location: /ProjectBanHangCuaTu2/Category/list');
         } else {
           echo "Đã xảy ra lỗi khi cập nhật danh mục.";
         }
@@ -111,7 +111,7 @@ class CategoryController
   {
     $result = $this->categoryModel->deleteCategory($id);
     if ($result) {
-      header('Location: /ProjectBanHangCuaTuBai2/Category/list');
+      header('Location: /ProjectBanHangCuaTu2/Category/list');
     } else {
       echo "Đã xảy ra lỗi khi xóa danh mục.";
     }

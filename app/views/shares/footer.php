@@ -15,22 +15,22 @@
         <h5 class="text-uppercase"><i class="fas fa-link mr-2"></i>Liên kết nhanh</h5>
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="/ProjectBanHangCuaTuBai2/Product/" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTu2/Product/" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-boxes mr-2 text-info"></i> Danh sách sản phẩm
             </a>
           </li>
           <li>
-            <a href="/ProjectBanHangCuaTuBai2/Product/add" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTu2/Product/add" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-plus-circle mr-2 text-success"></i> Thêm sản phẩm
             </a>
           </li>
           <li>
-            <a href="/ProjectBanHangCuaTuBai2/Category/list" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTu2/Category/list" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-layer-group mr-2 text-info"></i> Danh sách danh mục
             </a>
           </li>
           <li>
-            <a href="/ProjectBanHangCuaTuBai2/Category/add" class="text-dark d-flex align-items-center footer-link">
+            <a href="/ProjectBanHangCuaTu2/Category/add" class="text-dark d-flex align-items-center footer-link">
               <i class="fas fa-plus-circle mr-2 text-success"></i> Thêm danh mục
             </a>
           </li>

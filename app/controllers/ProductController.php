@@ -107,7 +107,7 @@ class ProductController
         $image
       );
       if ($edit) {
-        header('Location: /ProjectBanHangCuaTuBai2/Product');
+        header('Location: /ProjectBanHangCuaTu2/Product');
       } else {
         echo "Đã xảy ra lỗi khi lưu sản phẩm.";
       }
@@ -118,7 +118,7 @@ class ProductController
   public function delete($id)
   {
     if ($this->productModel->deleteProduct($id)) {
-      header('Location: /ProjectBanHangCuaTuBai2/Product');
+      header('Location: /ProjectBanHangCuaTu2/Product');
     } else {
       echo "Đã xảy ra lỗi khi xóa sản phẩm.";
     }
@@ -195,7 +195,7 @@ class ProductController
       exit;
     }
     // Nếu không phải AJAX thì chuyển hướng như cũ
-    header('Location: /ProjectBanHangCuaTuBai2/Product/');
+    header('Location: /ProjectBanHangCuaTu2/Product/');
     exit;
   }
 
@@ -237,7 +237,7 @@ class ProductController
         }
       }
     }
-    header('Location: /ProjectBanHangCuaTuBai2/Product/cart');
+    header('Location: /ProjectBanHangCuaTu2/Product/cart');
     exit;
   }
 
@@ -319,7 +319,7 @@ class ProductController
         // Commit giao dịch
         $this->db->commit();
         // Chuyển hướng đến trang xác nhận đơn hàng
-        header('Location: /ProjectBanHangCuaTuBai2/Product/orderConfirmation');
+        header('Location: /ProjectBanHangCuaTu2/Product/orderConfirmation');
       } catch (Exception $e) {
         // Rollback giao dịch nếu có lỗi
         $this->db->rollBack();

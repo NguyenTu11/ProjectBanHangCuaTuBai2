@@ -101,10 +101,10 @@
     <div class="row">
       <div class="col-md-5 text-center">
         <?php if ($product->image): ?>
-          <img src="/ProjectBanHangCuaTuBai2/<?php echo htmlspecialchars($product->image, ENT_QUOTES, 'UTF-8'); ?>"
+          <img src="/ProjectBanHangCuaTu2/<?php echo htmlspecialchars($product->image, ENT_QUOTES, 'UTF-8'); ?>"
             class="product-detail-img" alt="<?php echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?>">
         <?php else: ?>
-          <img src="/ProjectBanHangCuaTuBai2/images/no-image.png"
+          <img src="/ProjectBanHangCuaTu2/images/no-image.png"
             class="product-detail-img" alt="Không có ảnh">
         <?php endif; ?>
       </div>
@@ -130,7 +130,7 @@
             class="btn btn-success btn-3d px-4">
             <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
           </a>
-          <a href="/ProjectBanHangCuaTuBai2/Product/" class="btn btn-secondary btn-3d px-4 ml-2">
+          <a href="/ProjectBanHangCuaTu2/Product/" class="btn btn-secondary btn-3d px-4 ml-2">
             <i class="fas fa-arrow-left"></i> Quay lại danh sách
           </a>
         </div>

@@ -69,14 +69,14 @@
     <?php echo htmlspecialchars($category->description, ENT_QUOTES, 'UTF-8'); ?>
   </div>
   <div class="d-flex gap-2 justify-content-center">
-    <a href="/ProjectBanHangCuaTuBai2/Category/edit/<?php echo $category->id; ?>" class="btn btn-warning btn-3d mr-2">
+    <a href="/ProjectBanHangCuaTu2/Category/edit/<?php echo $category->id; ?>" class="btn btn-warning btn-3d mr-2">
       <i class="fas fa-edit"></i> Sửa
     </a>
-    <a href="/ProjectBanHangCuaTuBai2/Category/delete/<?php echo $category->id; ?>" class="btn btn-danger btn-3d"
+    <a href="/ProjectBanHangCuaTu2/Category/delete/<?php echo $category->id; ?>" class="btn btn-danger btn-3d"
       onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
       <i class="fas fa-trash-alt"></i> Xóa
     </a>
-    <a href="/ProjectBanHangCuaTuBai2/Category/list" class="btn btn-secondary btn-3d ml-2">
+    <a href="/ProjectBanHangCuaTu2/Category/list" class="btn btn-secondary btn-3d ml-2">
       <i class="fas fa-arrow-left"></i> Quay lại danh sách
     </a>
   </div>

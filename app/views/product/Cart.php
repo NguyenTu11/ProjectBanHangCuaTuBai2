@@ -237,9 +237,9 @@
       ?>
         <li class="cart-item">
           <?php if ($item['image']): ?>
-            <img src="/ProjectBanHangCuaTuBai2/<?php echo $item['image']; ?>" alt="Product Image" class="cart-img">
+            <img src="/ProjectBanHangCuaTu2/<?php echo $item['image']; ?>" alt="Product Image" class="cart-img">
           <?php else: ?>
-            <img src="/ProjectBanHangCuaTuBai2/images/no-image.png" alt="No Image" class="cart-img">
+            <img src="/ProjectBanHangCuaTu2/images/no-image.png" alt="No Image" class="cart-img">
           <?php endif; ?>
           <div class="cart-info">
             <div class="cart-name">
@@ -268,10 +268,10 @@
       Tổng tiền: <?php echo number_format($tong_tien, 0, ',', '.'); ?> VND
     </div>
     <div class="cart-actions">
-      <a href="/ProjectBanHangCuaTuBai2/Product" class="btn btn-secondary btn-3d">
+      <a href="/ProjectBanHangCuaTu2/Product" class="btn btn-secondary btn-3d">
         <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
       </a>
-      <a href="/ProjectBanHangCuaTuBai2/Product/checkout" class="btn btn-primary btn-3d">
+      <a href="/ProjectBanHangCuaTu2/Product/checkout" class="btn btn-primary btn-3d">
         <i class="fas fa-credit-card"></i> Thanh Toán
       </a>
     </div>
@@ -281,7 +281,7 @@
       Giỏ hàng của bạn đang trống.
     </div>
     <div class="cart-actions">
-      <a href="/ProjectBanHangCuaTuBai2/Product" class="btn btn-secondary btn-3d">
+      <a href="/ProjectBanHangCuaTu2/Product" class="btn btn-secondary btn-3d">
         <i class="fas fa-arrow-left"></i> Tiếp tục mua sắm
       </a>
     </div>
@@ -293,7 +293,7 @@
       e.preventDefault();
       var id = form.getAttribute('data-id');
       var qty = form.querySelector('input[name="quantity"]').value;
-      fetch('/ProjectBanHangCuaTuBai2/Product/updateCartAjax', {
+      fetch('/ProjectBanHangCuaTu2/Product/updateCartAjax', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -315,7 +315,7 @@
       var form = input.closest('.cart-qty-form');
       var id = form.getAttribute('data-id');
       var qty = input.value;
-      fetch('/ProjectBanHangCuaTuBai2/Product/updateCartAjax', {
+      fetch('/ProjectBanHangCuaTu2/Product/updateCartAjax', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -335,7 +335,7 @@
   // Xoá sản phẩm bằng AJAX
   function removeCartItem(id) {
     if (!confirm('Xoá sản phẩm này khỏi giỏ hàng?')) return;
-    fetch('/ProjectBanHangCuaTuBai2/Product/updateCartAjax', {
+    fetch('/ProjectBanHangCuaTu2/Product/updateCartAjax', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

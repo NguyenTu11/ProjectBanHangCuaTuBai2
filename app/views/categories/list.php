@@ -43,7 +43,7 @@
 </style>
 <h1 class="mb-4 text-center"><i class="fas fa-layer-group"></i> Danh sách danh mục</h1>
 <div class="text-right mb-3">
-  <a href="/ProjectBanHangCuaTuBai2/Category/add" class="btn btn-success btn-3d">
+  <a href="/ProjectBanHangCuaTu2/Category/add" class="btn btn-success btn-3d">
     <i class="fas fa-plus-circle"></i> Thêm danh mục mới
   </a>
 </div>
@@ -53,7 +53,7 @@
       <div class="category-card">
         <div class="category-title">
           <i class="fas fa-tag"></i>
-          <a href="/ProjectBanHangCuaTuBai2/Category/show/<?php echo $category->id; ?>" class="text-decoration-none text-dark">
+          <a href="/ProjectBanHangCuaTu2/Category/show/<?php echo $category->id; ?>" class="text-decoration-none text-dark">
             <?php echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?>
           </a>
         </div>
@@ -61,10 +61,10 @@
           <?php echo htmlspecialchars($category->description, ENT_QUOTES, 'UTF-8'); ?>
         </div>
         <div class="d-flex gap-2">
-          <a href="/ProjectBanHangCuaTuBai2/Category/edit/<?php echo $category->id; ?>" class="btn btn-warning btn-3d mr-2">
+          <a href="/ProjectBanHangCuaTu2/Category/edit/<?php echo $category->id; ?>" class="btn btn-warning btn-3d mr-2">
             <i class="fas fa-edit"></i> Sửa
           </a>
-          <a href="/ProjectBanHangCuaTuBai2/Category/delete/<?php echo $category->id; ?>" class="btn btn-danger btn-3d"
+          <a href="/ProjectBanHangCuaTu2/Category/delete/<?php echo $category->id; ?>" class="btn btn-danger btn-3d"
             onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
             <i class="fas fa-trash-alt"></i> Xóa
           </a>

@@ -78,7 +78,7 @@
       </ul>
     </div>
   <?php endif; ?>
-  <form method="POST" action="/ProjectBanHangCuaTuBai2/Category/save">
+  <form method="POST" action="/ProjectBanHangCuaTu2/Category/save">
     <div class="form-group mb-3">
       <label for="name"><i class="fas fa-tag"></i> Tên danh mục:</label>
       <input type="text" id="name" name="name" class="form-control" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') : ''; ?>">
@@ -91,7 +91,7 @@
       <i class="fas fa-plus"></i> Thêm danh mục
     </button>
   </form>
-  <a href="/ProjectBanHangCuaTuBai2/Category/list" class="btn btn-secondary btn-3d mt-3 w-100">
+  <a href="/ProjectBanHangCuaTu2/Category/list" class="btn btn-secondary btn-3d mt-3 w-100">
     <i class="fas fa-arrow-left"></i> Quay lại danh sách danh mục
   </a>
 </div>
