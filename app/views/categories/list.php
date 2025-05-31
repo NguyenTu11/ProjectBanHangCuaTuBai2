@@ -168,12 +168,14 @@
           <?php echo htmlspecialchars($category->description, ENT_QUOTES, 'UTF-8'); ?>
         </div>
         <div class="d-flex gap-2">
-          <a href="/ProjectBanHangCuaTu2/Category/edit/<?php echo $category->id; ?>" class="btn btn-warning btn-3d mr-2">
-            <i class="fas fa-edit"></i> Sửa
-          </a>
-          <a href="/ProjectBanHangCuaTu2/Category/delete/<?php echo $category->id; ?>" class="btn btn-danger btn-3d">
-            <i class="fas fa-trash-alt"></i> Xóa
-          </a>
+          <?php if (SessionHelper::isLoggedIn() && SessionHelper::getRole() === 'admin'): ?>
+            <a href="/ProjectBanHangCuaTu2/Category/edit/<?php echo $category->id; ?>" class="btn btn-warning btn-3d mr-2">
+              <i class="fas fa-edit"></i> Sửa
+            </a>
+            <a href="/ProjectBanHangCuaTu2/Category/delete/<?php echo $category->id; ?>" class="btn btn-danger btn-3d">
+              <i class="fas fa-trash-alt"></i> Xóa
+            </a>
+          <?php endif; ?>
         </div>
       </div>
     </div>
